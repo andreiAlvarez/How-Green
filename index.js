@@ -28,4 +28,18 @@ a = [14,14,14,14,14]
 make_valley(a) => [14, 14, *14*, 14, 14]
 
 
+// Solution One 
 
+const makeValley = arr => {
+    let arrOne=[],arrTwo=[];
+    let sorted=arr.slice().sort((a,b)=>a-b);
+    for (let i=0;i<arr.length;i++){
+    arrOne.push(sorted.pop());
+    arrTwo.push(sorted.pop());
+    }
+    return (arrOne.concat(arrTwo.sort((a,b)=>a-b))).filter(v=>v!=undefined)
+};
+
+// Clever
+
+const makeValley = a => [...a.sort((a, b,) => b - a).slice().filter((_, i) => !(i % 2)), ...a.slice().filter((_, i) => i % 2).reverse()]; 
